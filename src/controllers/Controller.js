@@ -56,6 +56,16 @@ class Controller {
       // erro
     }
   }
+
+  async restaura(req, res) {
+    const { id } = req.params;
+    try {
+      await this.entidadeService.restauraRegistro(Number(id));
+      return res.status(200).json({ mensagem: `id ${id} restaurado` });
+    } catch (error) {
+      // erro
+    }
+  }
 }
 
 module.exports = Controller;
