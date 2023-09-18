@@ -8,6 +8,15 @@ class PessoaController extends Controller {
     super(pessoaServices);
   }
 
+  async pegaTodasAsPessoas(req, res) {
+    try {
+      const listaTodasAsPessoas = await pessoaServices.pegaPessoasEscopoTodos();
+      return res.status(200).json(listaTodasAsPessoas);
+    } catch (erro) {
+      // erro
+    }
+  }
+
   async pegaMatriculas(req, res) {
     const { estudanteId } = req.params;
     try {
