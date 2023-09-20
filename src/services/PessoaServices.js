@@ -3,6 +3,7 @@ const Services = require('./Services.js');
 class PessoaServices extends Services {
   constructor() {
     super('Pessoa');
+    this.matriculas = new Services('Matricula');
   }
 
   async pegaPessoasEscopoTodos() {
@@ -11,10 +12,11 @@ class PessoaServices extends Services {
   }
 
   async pegaMatriculasPorEstudante(id) {
-    const estudante = await super.pegaUmRegistroPorId(id);
-    const listaMatriculas = await estudante.getAulasMatriculadas();
+    const listaMatriculas = await this.matriculas.pegaTodosOsRegistros({ estudante_id: id });
+    // const estudante = await super.pegaUmRegistroPorId(id);
+    // const listaMatriculas = await estudante.getAulasMatriculadas();
     return listaMatriculas;
-  }
+  } 
 }
 
 module.exports = PessoaServices;
